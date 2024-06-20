@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mines Game</title>
+    <link rel="stylesheet" href="./dist/styles/styles.css?v=1.0" />
+  </head>
+  <body>
+    <div class="game-control">
+      <div class="controls">
+        <div class="control-input-container">
+          <label for="bet-amount" class="input-label">Amount($)</label>
+          <input
+            type="number"
+            id="bet-amount"
+            class="control-input"
+            min="1"
+            value="1"
+          />
+        </div>
+        <div class="control-input-container">
+          <label for="mine-count" class="input-label">Mines</label>
+          <input
+            type="number"
+            id="mine-count"
+            class="control-input"
+            min="1"
+            max="24"
+            value="1"
+          />
+        </div>
+        <div class="control-input-container">
+          <label for="grid-size" class="input-label">Table Size</label>
+          <input
+            type="number"
+            id="grid-size"
+            class="control-input"
+            min="1"
+            value="5"
+          />
+        </div>
+        <div class="control-input-container hidden" id="gems-container">
+          <label for="gems" class="input-label"></label>
+          <p id="gems" class="control-output"></p>
+        </div>
+        <div class="control-input-container hidden" id="next-profit-container">
+          <label for="next-profit" class="input-label"></label>
+          <p id="next-profit" class="control-output"></p>
+        </div>
+        <div class="control-input-container hidden" id="total-profit-container">
+          <label for="total-profit" class="input-label"></label>
+          <p id="total-profit" class="control-output"></p>
+        </div>
+        <button id="start-game">Start Game</button>
+        <button id="cashout-game" class="hidden">Cashout</button>
+      </div>
+      <div class="result"></div>
+    </div>
+    <div class="game-view">
+      <div class="grids-wrapper"></div>
+      <div class="result-overlay"></div>
+    </div>
+    <script type="module" src="dist/scripts/main.js" defer></script>
+  </body>
+</html>
