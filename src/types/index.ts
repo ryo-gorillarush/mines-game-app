@@ -11,6 +11,17 @@ export interface GameState {
   multiples: number;
 }
 
+export interface Test {
+  gridTable: GridItem[][];
+  gameStarted: boolean;
+  betAmount: number;
+  mineCount: number;
+  gridSize: number;
+  uncoveredItems: number;
+  currentMultiply: number;
+  nextMultiply: number;
+}
+
 export interface RevealedGridItemResponse {
   gridItem: GridItem;
   uncoveredCells: number;
