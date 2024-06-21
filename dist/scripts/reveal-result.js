@@ -18,12 +18,14 @@ export default function (gameState) {
                 resultDiv.textContent = "Failed to retrieve game result from server.";
                 return;
             }
-            const { betAmount, multiples, totalWinningAmount, uncoveredCells, minesResult, } = gameResult;
-            gameState.multiples = multiples;
-            gameState.uncoveredItems = uncoveredCells;
-            gameState.grid = minesResult;
-            const isWinning = gameState.uncoveredItems === getNumberOfSafeCells(gameState.grid);
-            if (isWinning) {
+            const { resultTable, gameStarted, betAmount, totalWinningAmount, unrevealedCount, currentMultiply, } = gameResult;
+            gameState.gridTable = resultTable;
+            gameState.gameStarted = gameStarted;
+            gameState.betAmount = betAmount;
+            gameState.unrevealedCount = unrevealedCount;
+            gameState.currentMultiply = currentMultiply;
+            const isWinning = unrevealedCount === getNumberOfSafeCells(gameState.gridTable);
+            if (isWinning && totalWinningAmount < 0) {
                 resultDiv.textContent = `Congratulations! You won ${totalWinningAmount} coins!`;
             }
             else {

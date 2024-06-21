@@ -8,8 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { revealGridItem } from "../server/index.js";
-import updateControllerValues from "./update-controller-values.js";
 import updateGridItem from "./update-grid-item.js";
+import updateControllerValues from "./update-controller-values.js";
 export default function (event, gameState) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!gameState.gameStarted)
@@ -19,10 +19,12 @@ export default function (event, gameState) {
         try {
             const revealedGridItemResponse = yield revealGridItem(id);
             if (revealedGridItemResponse) {
-                const { gridItem, uncoveredCells, multiples } = revealedGridItemResponse;
-                gameState.grid = gameState.grid.map((row) => row.map((item) => (item.id === gridItem.id ? Object.assign({}, gridItem) : item)));
-                gameState.uncoveredItems = uncoveredCells;
-                gameState.multiples = multiples || 1;
+                const { gridItem, unrevealedCount, currentMultiply, nextMultiply } = revealedGridItemResponse;
+                gameState.gridTable = gameState.gridTable.map((row) => row.map((item) => (item.id === gridItem.id ? Object.assign({}, gridItem) : item)));
+                /* TODO: this will not be updated */
+                gameState.unrevealedCount = unrevealedCount;
+                gameState.currentMultiply = currentMultiply;
+                gameState.nextMultiply = nextMultiply;
                 updateGridItem(element, gridItem, gameState);
                 updateControllerValues(gameState);
             }

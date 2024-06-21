@@ -5,7 +5,7 @@ export default function (gameState: GameState) {
   const gridItems = document.querySelectorAll<HTMLButtonElement>(".grid-item");
   gridItems.forEach((item) => {
     const itemId = item.dataset.id;
-    const gridItem = gameState.grid
+    const gridItem = gameState.gridTable
       .reduce((acc, row) => acc.concat(row), [])
       .find((item) => item.id === itemId);
 

@@ -26,10 +26,10 @@ export default function (gameState) {
             return null;
         }
         try {
-            const initialGridTable = yield initializeGame(betAmount, mineCount, gridSize);
-            if (initialGridTable) {
+            const initialGameState = yield initializeGame(betAmount, mineCount, gridSize);
+            if (initialGameState) {
                 resultDiv.textContent = "";
-                return initialGridTable;
+                return initialGameState;
             }
             else {
                 resultDiv.textContent = "Failed to initialize the game.";

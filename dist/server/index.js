@@ -58,8 +58,12 @@ function initializeGame(betAmount, mineCount, gridSize) {
                 },
                 body: JSON.stringify({ betAmount, gridSize, mineCount }),
             });
-            const gridItems = yield response.json();
-            return gridItems;
+            if (response.ok) {
+                const gameState = yield response.json();
+                return gameState;
+            }
+            else
+                return null;
         }
         catch (error) {
             console.error("Error initializing game:", error);

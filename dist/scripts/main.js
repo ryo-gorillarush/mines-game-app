@@ -34,14 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 /* 2. Start game */
 startGameButton.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
-    const initialGridTable = yield startGame(gameState);
-    if (initialGridTable) {
-        gameState.gridTable = initialGridTable;
-        gameState.gameStarted = true;
-        /* update gameState here */
-        gameState.unrevealedCount = 0;
-        renderGridItems(gameState);
-        initializeGameController(1.03, 1.0);
+    const initialGameState = yield startGame(gameState);
+    if (initialGameState) {
+        Object.assign(gameState, initialGameState);
+        renderGridItems(initialGameState);
+        initializeGameController(initialGameState.nextMultiply, initialGameState.currentMultiply);
     }
 }));
 /* 3. Chashout game */

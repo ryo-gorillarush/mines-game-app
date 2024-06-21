@@ -4,9 +4,9 @@ export default function (gameState) {
     const totalProfitDisplay = document.querySelector("#total-profit");
     const startGameButton = document.querySelector("#start-game");
     const cashoutGameButton = document.querySelector("#cashout-game");
-    gemsDisplay.textContent = (24 - gameState.uncoveredItems).toString();
-    nextProfitDisplay.textContent = (gameState.multiples * 1.03).toFixed(2);
-    totalProfitDisplay.textContent = (gameState.multiples * 1.0).toFixed(2);
+    gemsDisplay.textContent = (24 - gameState.unrevealedCount).toString();
+    nextProfitDisplay.textContent = (gameState.betAmount * gameState.nextMultiply).toFixed(2);
+    totalProfitDisplay.textContent = (gameState.betAmount * gameState.currentMultiply).toFixed(2);
     startGameButton.disabled = true;
     cashoutGameButton.disabled = false;
     startGameButton.classList.remove("active");
