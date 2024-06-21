@@ -21,7 +21,6 @@ export default function (event, gameState) {
             if (revealedGridItemResponse) {
                 const { gridItem, unrevealedCount, currentMultiply, nextMultiply } = revealedGridItemResponse;
                 gameState.gridTable = gameState.gridTable.map((row) => row.map((item) => (item.id === gridItem.id ? Object.assign({}, gridItem) : item)));
-                /* TODO: this will not be updated */
                 gameState.unrevealedCount = unrevealedCount;
                 gameState.currentMultiply = currentMultiply;
                 gameState.nextMultiply = nextMultiply;

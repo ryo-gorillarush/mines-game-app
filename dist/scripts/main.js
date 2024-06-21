@@ -9,13 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import loadGame from "../server/load-game.js";
 import startGame from "../server/start-game.js";
+import cashoutGame from "../server/cashout-game.js";
 import renderGridItems from "./render-grid-items.js";
-import cashoutGameController from "./cashout-game-controller.js";
+import controlResultOverlay from "./control-result-overlay.js";
 import initializeGameController from "./initialize-game-controller.js";
 const startGameButton = document.querySelector("#start-game");
 const cashoutGameButton = document.querySelector("#cashout-game");
 const resultDiv = document.querySelector(".result");
-const gameState = {
+const defaultGameState = {
     gridTable: [],
     gameStarted: false,
     betAmount: 0,
@@ -25,6 +26,7 @@ const gameState = {
     currentMultiply: 1,
     nextMultiply: 1,
 };
+const gameState = Object.assign({}, defaultGameState);
 /* 1. Grid Template is loaded */
 document.addEventListener("DOMContentLoaded", () => {
     loadGame().catch((error) => {
@@ -34,6 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 /* 2. Start game */
 startGameButton.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+    Object.assign(gameState, defaultGameState);
+    controlResultOverlay(0, 0, true);
     const initialGameState = yield startGame(gameState);
     if (initialGameState) {
         Object.assign(gameState, initialGameState);
@@ -43,9 +47,11 @@ startGameButton.addEventListener("click", () => __awaiter(void 0, void 0, void 0
 }));
 /* 3. Chashout game */
 cashoutGameButton.addEventListener("click", () => {
-    if (gameState.gameStarted) {
-        gameState.gameStarted = false;
-        cashoutGameController();
-    }
+    if (gameState.gameStarted)
+        cashoutGame(gameState).catch((error) => {
+            console.error("Failed to cashout:", error);
+            resultDiv.textContent =
+                "Failed to cashout the game. Please try again later.";
+        });
 });
 //# sourceMappingURL=main.js.map

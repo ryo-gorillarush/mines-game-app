@@ -265,3 +265,37 @@ input[type="number"] {
     transform: translate3d(-60%, -60%, 0px);
   }
 }
+
+.result-overlay {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 16.875rem;
+  height: 7.5rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -3.75rem 0px 0px -8.4375rem;
+  border-radius: 0.5rem;
+  border: 0.3125rem solid rgb(49, 52, 60);
+  background-color: rgb(35, 38, 43);
+  padding: 1rem;
+  z-index: 10;
+}
+
+.result-amount {
+  color: rgb(67, 179, 9);
+  font-size: 1.875rem;
+  font-weight: bold;
+  width: 90%;
+}
+
+.result-odd {
+  font-size: 1.625rem;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  line-height: 1;
+}

@@ -102,10 +102,30 @@ async function revealGameResult(): Promise<RevealedResultResponse | null> {
   }
 }
 
+async function cashout(): Promise<RevealedResultResponse | null> {
+  try {
+    const response = await fetch(`${backendBaseUrl}/game/cashout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Failed to retrieve game result");
+    }
+  } catch (error) {
+    console.error("Error revealing game result:", error);
+    throw error;
+  }
+}
+
 export {
   checkConnection,
   createGridTemplate,
   initializeGame,
   revealGridItem,
   revealGameResult,
+  cashout,
 };

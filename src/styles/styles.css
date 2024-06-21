@@ -180,6 +180,10 @@ input[type="number"] {
 .cell-item.mine:before {
   background-image: url("../assets/mine.png"); }
 
+.cell-item.mine-opacity:before {
+  background-image: url("../assets/mine.png");
+  opacity: 0.3; }
+
 .outline {
   position: absolute;
   inset: 0;
@@ -210,3 +214,34 @@ input[type="number"] {
     transform: translate3d(10%, 10%, 0px); }
   100% {
     transform: translate3d(-60%, -60%, 0px); } }
+
+.result-overlay {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 16.875rem;
+  height: 7.5rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -3.75rem 0px 0px -8.4375rem;
+  border-radius: 0.5rem;
+  border: 0.3125rem solid #31343c;
+  background-color: #23262b;
+  padding: 1rem;
+  z-index: 10; }
+
+.result-amount {
+  color: #43b309;
+  font-size: 1.875rem;
+  font-weight: bold;
+  width: 90%; }
+
+.result-odd {
+  font-size: 1.625rem;
+  color: white;
+  font-weight: bold;
+  line-height: 1; }

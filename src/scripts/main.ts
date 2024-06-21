@@ -1,7 +1,8 @@
 import loadGame from "../server/load-game.js";
 import startGame from "../server/start-game.js";
+import cashoutGame from "../server/cashout-game.js";
 import renderGridItems from "./render-grid-items.js";
-import cashoutGameController from "./cashout-game-controller.js";
+import controlResultOverlay from "./control-result-overlay.js";
 import initializeGameController from "./initialize-game-controller.js";
 import type { GameState } from "../types/index.js";
 
@@ -11,7 +12,7 @@ const cashoutGameButton: HTMLButtonElement =
   document.querySelector("#cashout-game")!;
 const resultDiv: HTMLDivElement = document.querySelector(".result")!;
 
-const gameState: GameState = {
+const defaultGameState: GameState = {
   gridTable: [],
   gameStarted: false,
   betAmount: 0,
@@ -21,6 +22,8 @@ const gameState: GameState = {
   currentMultiply: 1,
   nextMultiply: 1,
 };
+
+const gameState: GameState = { ...defaultGameState };
 
 /* 1. Grid Template is loaded */
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,6 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* 2. Start game */
 startGameButton.addEventListener("click", async () => {
+  Object.assign(gameState, defaultGameState);
+  controlResultOverlay(0, 0, true);
+
   const initialGameState = await startGame(gameState);
 
   if (initialGameState) {
@@ -43,8 +49,10 @@ startGameButton.addEventListener("click", async () => {
 
 /* 3. Chashout game */
 cashoutGameButton.addEventListener("click", () => {
-  if (gameState.gameStarted) {
-    gameState.gameStarted = false;
-    cashoutGameController();
-  }
+  if (gameState.gameStarted)
+    cashoutGame(gameState).catch((error) => {
+      console.error("Failed to cashout:", error);
+      resultDiv.textContent =
+        "Failed to cashout the game. Please try again later.";
+    });
 });

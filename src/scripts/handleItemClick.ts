@@ -20,7 +20,6 @@ export default async function (event: Event, gameState: GameState) {
       gameState.gridTable = gameState.gridTable.map((row) =>
         row.map((item) => (item.id === gridItem.id ? { ...gridItem } : item))
       );
-      /* TODO: this will not be updated */
       gameState.unrevealedCount = unrevealedCount;
       gameState.currentMultiply = currentMultiply;
       gameState.nextMultiply = nextMultiply;

@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { revealGameResult } from "../server/index.js";
 import revealGridTable from "./reveal-grid-table.js";
+import cashoutGameController from "./cashout-game-controller.js";
 export default function (gameState) {
     return __awaiter(this, void 0, void 0, function* () {
         const resultDiv = document.querySelector(".result");
@@ -32,6 +33,7 @@ export default function (gameState) {
                 resultDiv.textContent = "Game over. You hit a mine!";
             }
             revealGridTable(gameState);
+            cashoutGameController();
         }
         catch (error) {
             console.error("Error handling game end:", error);

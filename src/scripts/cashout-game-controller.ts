@@ -20,6 +20,8 @@ export default function () {
   startGameButton.classList.remove("hidden");
   cashoutGameButton.classList.add("hidden");
 
+  startGameButton.disabled = false;
+  cashoutGameButton.disabled = true;
   betAmountInput.disabled = false;
   mineCountInput.disabled = false;
   gridSizeInput.disabled = false;

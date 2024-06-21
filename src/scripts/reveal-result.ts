@@ -1,6 +1,7 @@
 import { revealGameResult } from "../server/index.js";
 import revealGridTable from "./reveal-grid-table.js";
 import type { GameState, GridItem } from "../types/index.js";
+import cashoutGameController from "./cashout-game-controller.js";
 
 export default async function (gameState: GameState) {
   const resultDiv: HTMLDivElement = document.querySelector(".result")!;
@@ -37,6 +38,7 @@ export default async function (gameState: GameState) {
     }
 
     revealGridTable(gameState);
+    cashoutGameController();
   } catch (error) {
     console.error("Error handling game end:", error);
     resultDiv.textContent = "An error occurred while handling game end.";
