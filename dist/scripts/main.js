@@ -38,7 +38,7 @@ startGameButton.addEventListener("click", () => __awaiter(void 0, void 0, void 0
     if (initialGameState) {
         Object.assign(gameState, initialGameState);
         renderGridItems(initialGameState);
-        initializeGameController(initialGameState.nextMultiply, initialGameState.currentMultiply);
+        initializeGameController(gameState);
     }
 }));
 /* 3. Chashout game */

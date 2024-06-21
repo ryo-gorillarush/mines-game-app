@@ -216,6 +216,11 @@ input[type="number"] {
   background-image: url("../assets/mine.png");
 }
 
+.cell-item.mine-opacity:before {
+  background-image: url("../assets/mine.png");
+  opacity: 0.3;
+}
+
 .outline {
   position: absolute;
   inset: 0;

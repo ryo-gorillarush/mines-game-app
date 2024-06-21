@@ -1,6 +1,12 @@
 import { GameState } from "../types/index.js";
 
 export default function (gameState: GameState) {
+  const nextProfitLabel: HTMLLabelElement = document.querySelector(
+    "label[for='next-profit']"
+  )!;
+  const totalProfitLabel: HTMLLabelElement = document.querySelector(
+    "label[for='total-profit']"
+  )!;
   const gemsDisplay: HTMLParagraphElement = document.querySelector("#gems")!;
   const nextProfitDisplay: HTMLParagraphElement =
     document.querySelector("#next-profit")!;
@@ -11,7 +17,10 @@ export default function (gameState: GameState) {
   const cashoutGameButton: HTMLButtonElement =
     document.querySelector("#cashout-game")!;
 
-  gemsDisplay.textContent = (24 - gameState.unrevealedCount).toString();
+  nextProfitLabel.textContent = `Profit on Next Tile (${gameState.nextMultiply}x)`;
+  totalProfitLabel.textContent = `Total Profit (${gameState.currentMultiply}x)`;
+
+  gemsDisplay.textContent = gameState.unrevealedCount.toFixed(0);
   nextProfitDisplay.textContent = (
     gameState.betAmount * gameState.nextMultiply
   ).toFixed(2);

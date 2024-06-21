@@ -1,4 +1,6 @@
-export default function (nextMultiple: number, currentMultiple: number) {
+import type { GameState } from "../types/index.js";
+
+export default function (gameState: GameState) {
   const startGameButton: HTMLButtonElement =
     document.querySelector("#start-game")!;
   const betAmountInput: HTMLInputElement =
@@ -22,6 +24,11 @@ export default function (nextMultiple: number, currentMultiple: number) {
   const totalProfitLabel: HTMLLabelElement = document.querySelector(
     "label[for='total-profit']"
   )!;
+  const gemsDisplay: HTMLParagraphElement = document.querySelector("#gems")!;
+  const nextProfitDisplay: HTMLParagraphElement =
+    document.querySelector("#next-profit")!;
+  const totalProfitDisplay: HTMLParagraphElement =
+    document.querySelector("#total-profit")!;
 
   startGameButton.classList.add("active");
 
@@ -34,6 +41,14 @@ export default function (nextMultiple: number, currentMultiple: number) {
   totalProfitContainer.classList.remove("hidden");
 
   gemsLabel.textContent = "Gems";
-  nextProfitLabel.textContent = `Profit on Next Tile (${nextMultiple}x)`;
-  totalProfitLabel.textContent = `Total Profit (${currentMultiple}x)`;
+  nextProfitLabel.textContent = `Profit on Next Tile (${gameState.nextMultiply}x)`;
+  totalProfitLabel.textContent = `Total Profit (${gameState.currentMultiply}x)`;
+
+  gemsDisplay.textContent = gameState.unrevealedCount.toFixed(0);
+  nextProfitDisplay.textContent = (
+    gameState.betAmount * gameState.nextMultiply
+  ).toFixed(2);
+  totalProfitDisplay.textContent = (
+    gameState.betAmount * gameState.currentMultiply
+  ).toFixed(2);
 }

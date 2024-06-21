@@ -20,8 +20,11 @@ export default function (gameState) {
             if (gridItem.isRevealed && !gridItem.isMine) {
                 cellItem.classList.add("cell-revealed");
             }
-            else if (gridItem.isMine) {
+            else if (gridItem.isRevealed && gridItem.isMine) {
                 cellItem.classList.add("cell-not-revealed");
+            }
+            else if (gridItem.isMine) {
+                cellItem.classList.add("cell-not-revealed", "mine-opacity");
             }
             else {
                 cellItem.classList.add("cell-not-revealed", "diamond-opacity");

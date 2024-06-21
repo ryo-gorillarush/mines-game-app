@@ -37,10 +37,7 @@ startGameButton.addEventListener("click", async () => {
   if (initialGameState) {
     Object.assign(gameState, initialGameState);
     renderGridItems(initialGameState);
-    initializeGameController(
-      initialGameState.nextMultiply,
-      initialGameState.currentMultiply
-    );
+    initializeGameController(gameState);
   }
 });
 
