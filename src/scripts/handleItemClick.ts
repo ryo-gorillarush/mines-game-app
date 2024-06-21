@@ -1,7 +1,7 @@
 import { revealGridItem } from "../server/index.js";
-import { GameState, RevealedGridItemResponse } from "../types/index.js";
-import updateControllerValues from "./update-controller-values.js";
 import updateGridItem from "./update-grid-item.js";
+import updateControllerValues from "./update-controller-values.js";
+import type { GameState, RevealedGridItemResponse } from "../types/index.js";
 
 export default async function (event: Event, gameState: GameState) {
   if (!gameState.gameStarted) return;
@@ -14,13 +14,16 @@ export default async function (event: Event, gameState: GameState) {
       await revealGridItem(id);
 
     if (revealedGridItemResponse) {
-      const { gridItem, uncoveredCells, multiples } = revealedGridItemResponse;
+      const { gridItem, unrevealedCount, currentMultiply, nextMultiply } =
+        revealedGridItemResponse;
 
-      gameState.grid = gameState.grid.map((row) =>
+      gameState.gridTable = gameState.gridTable.map((row) =>
         row.map((item) => (item.id === gridItem.id ? { ...gridItem } : item))
       );
-      gameState.uncoveredItems = uncoveredCells;
-      gameState.multiples = multiples || 1;
+      /* TODO: this will not be updated */
+      gameState.unrevealedCount = unrevealedCount;
+      gameState.currentMultiply = currentMultiply;
+      gameState.nextMultiply = nextMultiply;
 
       updateGridItem(element, gridItem, gameState);
       updateControllerValues(gameState);

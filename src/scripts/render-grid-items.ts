@@ -6,11 +6,11 @@ export default function (gameState: GameState) {
   const gridWrapper: HTMLDivElement = document.querySelector(".grids-wrapper")!;
   gridWrapper.innerHTML = "";
 
-  for (let row = 0; row < gameState.grid.length; row++) {
-    for (let col = 0; col < gameState.grid.length; col++) {
+  for (let row = 0; row < gameState.gridTable.length; row++) {
+    for (let col = 0; col < gameState.gridTable.length; col++) {
       const cell = document.createElement("button");
       cell.classList.add("grid-item");
-      cell.dataset.id = gameState.grid[row][col].id;
+      cell.dataset.id = gameState.gridTable[row][col].id;
 
       const listener = (event: Event) => handleItemClick(event, gameState);
       cell.addEventListener("click", listener);

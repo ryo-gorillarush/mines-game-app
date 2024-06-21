@@ -5,33 +5,29 @@ export interface GridItem {
 }
 
 export interface GameState {
-  grid: GridItem[][];
-  gameStarted: boolean;
-  uncoveredItems: number;
-  multiples: number;
-}
-
-export interface Test {
   gridTable: GridItem[][];
   gameStarted: boolean;
   betAmount: number;
   mineCount: number;
   gridSize: number;
-  uncoveredItems: number;
+  unrevealedCount: number;
   currentMultiply: number;
   nextMultiply: number;
 }
 
 export interface RevealedGridItemResponse {
   gridItem: GridItem;
-  uncoveredCells: number;
-  multiples: number;
+  gameStarted: boolean;
+  unrevealedCount: number;
+  currentMultiply: number;
+  nextMultiply: number;
 }
 
 export interface RevealedResultResponse {
+  resultTable: GridItem[][];
+  gameStarted: boolean;
   betAmount: number;
-  multiples: number;
   totalWinningAmount: number;
-  uncoveredCells: number;
-  minesResult: GridItem[][];
+  unrevealedCount: number;
+  currentMultiply: number;
 }

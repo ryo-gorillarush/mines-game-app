@@ -1,6 +1,6 @@
 import { revealGameResult } from "../server/index.js";
-import type { GameState, GridItem } from "../types/index.js";
 import revealGridTable from "./reveal-grid-table.js";
+import type { GameState, GridItem } from "../types/index.js";
 
 export default async function (gameState: GameState) {
   const resultDiv: HTMLDivElement = document.querySelector(".result")!;
@@ -13,21 +13,24 @@ export default async function (gameState: GameState) {
     }
 
     const {
+      resultTable,
+      gameStarted,
       betAmount,
-      multiples,
       totalWinningAmount,
-      uncoveredCells,
-      minesResult,
+      unrevealedCount,
+      currentMultiply,
     } = gameResult;
 
-    gameState.multiples = multiples;
-    gameState.uncoveredItems = uncoveredCells;
-    gameState.grid = minesResult;
+    gameState.gridTable = resultTable;
+    gameState.gameStarted = gameStarted;
+    gameState.betAmount = betAmount;
+    gameState.unrevealedCount = unrevealedCount;
+    gameState.currentMultiply = currentMultiply;
 
     const isWinning =
-      gameState.uncoveredItems === getNumberOfSafeCells(gameState.grid);
+      unrevealedCount === getNumberOfSafeCells(gameState.gridTable);
 
-    if (isWinning) {
+    if (isWinning && totalWinningAmount < 0) {
       resultDiv.textContent = `Congratulations! You won ${totalWinningAmount} coins!`;
     } else {
       resultDiv.textContent = "Game over. You hit a mine!";

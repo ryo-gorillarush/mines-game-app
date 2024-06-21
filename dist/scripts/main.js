@@ -16,10 +16,14 @@ const startGameButton = document.querySelector("#start-game");
 const cashoutGameButton = document.querySelector("#cashout-game");
 const resultDiv = document.querySelector(".result");
 const gameState = {
-    grid: [],
+    gridTable: [],
     gameStarted: false,
-    uncoveredItems: 0,
-    multiples: 1,
+    betAmount: 0,
+    mineCount: 1,
+    gridSize: 5,
+    unrevealedCount: 0,
+    currentMultiply: 1,
+    nextMultiply: 1,
 };
 /* 1. Grid Template is loaded */
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,9 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
 startGameButton.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
     const initialGridTable = yield startGame(gameState);
     if (initialGridTable) {
-        gameState.grid = initialGridTable;
+        gameState.gridTable = initialGridTable;
         gameState.gameStarted = true;
-        gameState.uncoveredItems = 0;
+        /* update gameState here */
+        gameState.unrevealedCount = 0;
         renderGridItems(gameState);
         initializeGameController(1.03, 1.0);
     }

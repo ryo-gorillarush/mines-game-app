@@ -1,4 +1,5 @@
 import type {
+  GameState,
   GridItem,
   RevealedGridItemResponse,
   RevealedResultResponse,
@@ -44,9 +45,9 @@ async function createGridTemplate(
 
 async function initializeGame(
   betAmount: number,
-  gridSize: number,
-  mineCount: number
-): Promise<GridItem[][] | null> {
+  mineCount: number,
+  gridSize: number
+): Promise<GameState | null> {
   try {
     const response = await fetch(`${backendBaseUrl}/game/start-game`, {
       method: "POST",
@@ -55,8 +56,10 @@ async function initializeGame(
       },
       body: JSON.stringify({ betAmount, gridSize, mineCount }),
     });
-    const gridItems: GridItem[][] = await response.json();
-    return gridItems;
+    if (response.ok) {
+      const gameState: GameState = await response.json();
+      return gameState;
+    } else return null;
   } catch (error) {
     console.error("Error initializing game:", error);
     return null;

@@ -1,9 +1,9 @@
 import { initializeGame } from "./index.js";
-import type { GameState, GridItem } from "../types/index.js";
+import type { GameState } from "../types/index.js";
 
 export default async function (
   gameState: GameState
-): Promise<GridItem[][] | null> {
+): Promise<GameState | null> {
   const resultDiv: HTMLDivElement = document.querySelector(".result")!;
   const betAmountInput: HTMLInputElement =
     document.querySelector("#bet-amount")!;
@@ -26,15 +26,15 @@ export default async function (
   }
 
   try {
-    const initialGridTable = await initializeGame(
+    const initialGameState = await initializeGame(
       betAmount,
-      gridSize,
-      mineCount
+      mineCount,
+      gridSize
     );
 
-    if (initialGridTable) {
+    if (initialGameState) {
       resultDiv.textContent = "";
-      return initialGridTable;
+      return initialGameState;
     } else {
       resultDiv.textContent = "Failed to initialize the game.";
       return null;

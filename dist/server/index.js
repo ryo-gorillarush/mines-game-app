@@ -48,7 +48,7 @@ function createGridTemplate(gridSize) {
         }
     });
 }
-function initializeGame(betAmount, gridSize, mineCount) {
+function initializeGame(betAmount, mineCount, gridSize) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const response = yield fetch(`${backendBaseUrl}/game/start-game`, {
