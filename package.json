@@ -6,6 +6,7 @@
     "build": "npm-run-all build:ts build:css",
     "build:ts": "tsc",
     "build:css": "node-sass src/styles/styles.scss dist/styles/styles.css",
+    "copy:index": "cp index.html dist/index.html",
     "watch": "npm-run-all --parallel watch:ts watch:css",
     "watch:ts": "tsc --watch",
     "watch:css": "node-sass --watch ./src/styles/styles.scss ./src/styles/styles.css",
