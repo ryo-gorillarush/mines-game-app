@@ -5,7 +5,7 @@ import type {
   RevealedResultResponse,
 } from "../types/index.js";
 
-const backendBaseUrl = "http://localhost:4000";
+const backendBaseUrl = "http://13.236.6.152:4000";
 
 async function checkConnection(): Promise<boolean> {
   try {

@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const backendBaseUrl = "http://localhost:4000";
+const backendBaseUrl = "http://13.236.6.152:4000";
 function checkConnection() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
